@@ -1,0 +1,32 @@
+{
+  "name": "zucryptwebstorage",
+  "version": "1.0.0",
+  "description": "ZuCryptWebStorage - End-to-End encrypted storage using official Web APIs of your browser environment",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "test": "ts-node node_modules/jasmine/bin/jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZuInnoTe/zucryptwebstorage.git"
+  },
+  "keywords": [],
+  "author": "Jörn Franke <zuinnote@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ZuInnoTe/zucryptwebstorage/issues"
+  },
+  "homepage": "https://github.com/ZuInnoTe/zucryptwebstorage#readme",
+  "dependencies": {
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.10.3",
+    "jasmine": "^4.0.1",
+    "jasmine-spec-reporter": "^7.0.0",
+    "ts-node": "^10.4.0"
+  }
+}
