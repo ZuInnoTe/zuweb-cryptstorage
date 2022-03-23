@@ -4,10 +4,18 @@
   "description": "ZuCryptWebStorage - End-to-End encrypted storage using official Web APIs of your browser environment",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
-    "build": "tsc --build",
-    "clean": "tsc --build --clean",
-    "test": "ts-node node_modules/jasmine/bin/jasmine"
+    "build": "tsc --project tsconfig.dev.json",
+    "build-prod": "npm run clean && tsc --project tsconfig.prod.json",
+    "typedoc": "typedoc --tsconfig tsconfig.prod.json ./src --out docs/code",
+    "clean": "tsc --build --clean && rm -rf docs/code && rm -rf coverage && rm -rf .nyc_output && rm -rf dist",
+    "fmt": "prettier --write .",
+    "codeanalysis": "eslint src",
+    "test": "nyc  --require ts-node/register jasmine",
+    "browser-test": "karma start"
   },
   "repository": {
     "type": "git",
@@ -20,13 +28,26 @@
     "url": "https://github.com/ZuInnoTe/zucryptwebstorage/issues"
   },
   "homepage": "https://github.com/ZuInnoTe/zucryptwebstorage#readme",
-  "dependencies": {
-    "typescript": "^4.5.4"
-  },
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/jasmine": "^3.10.3",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint": "^8.6.0",
     "jasmine": "^4.0.1",
     "jasmine-spec-reporter": "^7.0.0",
-    "ts-node": "^10.4.0"
+    "karma": "^6.3.16",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.2.0",
+    "karma-firefox-launcher": "^2.1.2",
+    "karma-jasmine": "^4.0.1",
+    "karma-typescript": "^5.5.3",
+    "karma-typescript-es6-transform": "^5.5.3",
+    "nyc": "^15.1.0",
+    "prettier": "2.5.1",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.4.0",
+    "typedoc": "^0.22.12",
+    "typescript": "^4.5.4"
   }
 }
