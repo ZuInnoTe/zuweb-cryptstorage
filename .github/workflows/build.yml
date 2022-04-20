@@ -13,7 +13,7 @@ jobs:
        uses: actions/cache@v3
        with:
         path: emsdk
-        key: ${{ runner.os }}-emcc-${EMSDK_VERSION}}
+        key: ${{ runner.os }}-emcc-${EMSDK_VERSION}
      - name: Checkout emscripte
        if: steps.cache-emsdk.outputs.cache-hit != 'true'
        uses: actions/checkout@v2
