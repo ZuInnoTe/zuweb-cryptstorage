@@ -15,7 +15,7 @@ jobs:
        with:
         path: emsdk
         key: ${{ runner.os }}-emcc-${{env.EMSDK_VERSION}}
-     - name: Checkout emscripte
+     - name: Checkout emscripten
        if: steps.cache-emsdk.outputs.cache-hit != 'true'
        uses: actions/checkout@v2
        with:
@@ -28,6 +28,8 @@ jobs:
               ./emsdk install ${{env.EMSDK_VERSION}}
      - name: Configure emsdk and display version
        run: |
-           source ./emsdk/emsdk_env.sh
+           cd emsdk
+           ./emsdk activate ${{env.EMSDK_VERSION}}
+           source ./emsdk_env.sh
            emcc --version
     
