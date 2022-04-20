@@ -1,0 +1,28 @@
+name: zucryptwebstorage-build
+on: [push]
+jobs:
+  build-dev:
+    runs-on: ubuntu-latest
+    env:
+        EMSDK_VERSION: "3.1.8"
+    steps:
+     - name: Checkout repository
+       uses: actions/checkout@v2
+     - name: Cache Emscripten-SDK
+       id: cache-emsdk
+       uses: actions/cache@v3
+       with:
+        path: emsdk
+        key: ${{ runner.os }}-emcc-${{EMSDK_VERSION}}
+     - name: Checkout emscripten
+       if: steps.cache-emsdk.outputs.cache-hit != 'true'
+       uses: actions/checkout@v2
+       with:
+        repository: emscripten-core/emsdk
+        path: emsdk
+     - name: Install emsdk
+       if: steps.cache-emsdk.outputs.cache-hit != 'true'
+       run: |
+              cd emsdk
+              ./emsdk install ${EMSDK_VERSION}
+    
