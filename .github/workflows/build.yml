@@ -27,7 +27,7 @@ jobs:
               cd emsdk
               ./emsdk install ${{env.EMSDK_VERSION}}
      - name: Configure emsdk and display version
-        run: |
+       run: |
            source ./emsdk/emsdk_env.sh
            emcc --version
     
