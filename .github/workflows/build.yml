@@ -3,9 +3,8 @@ on: [push]
 env:
     EMSDK_VERSION: "3.1.8"
 jobs:
-  build-dev:
+  build-phc-winner-argon2-wasm-dev:
     runs-on: ubuntu-latest
-
     steps:
      - name: Checkout repository
        uses: actions/checkout@v2
@@ -24,11 +23,22 @@ jobs:
      - name: Install emsdk
        if: steps.cache-emsdk.outputs.cache-hit != 'true'
        run: |
-              cd emsdk
-              ./emsdk install ${{env.EMSDK_VERSION}}
+              ./emsdk/emsdk install ${{env.EMSDK_VERSION}}
      - name: Configure emsdk and display version
        run: |
            ./emsdk/emsdk activate ${{env.EMSDK_VERSION}}
            source ./emsdk/emsdk_env.sh
            emcc --version
-    
+      - name: Make third party - phc-winner-argon2-wasm
+        run: |
+           cd thirdparty/phc-winner-argon2-wasm
+           make clean
+           make
+           npm ci
+           npm run clean
+           npm run fmt
+           npm run codeanalysis
+           npm run build-prod
+           npm run test
+           npm run typedoc
+           cd ../..

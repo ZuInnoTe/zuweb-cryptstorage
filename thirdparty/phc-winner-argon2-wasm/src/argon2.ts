@@ -112,6 +112,15 @@ export class Argon2 {
     this.argon2Module = create_argon2_module();
   }
 
+  /***
+   * Release resources
+   */
+  public close() {
+    if (this.argon2Module !== undefined) {
+      this.argon2Module.destroy;
+    }
+  }
+
   /**
    * Calculates the Argon 2d hash of the password and the salt
    *

@@ -4,8 +4,16 @@
  */
 import { Argon2, Argon2VerifyResult } from "../src/argon2";
 
-describe("argon2d_hash generates and verifies the hash according to the correct password", () => {
-  it("correctly", async () => {
+describe("Argon2 Integration", () => {
+  let argon2: Argon2;
+  beforeEach(function () {
+    argon2 = new Argon2();
+  });
+  afterEach(function () {
+    argon2.close();
+  });
+
+  it("argon2d_hash generates and verifies the hash according to the correct password correctly", () => {
     const password: string = "passwordpassword";
     const salt: string = "saltsaltsaltsalt"; // salt should be truely random - this here is just for testing purposes - never do this in a real application
     const keysize: number = 32;
@@ -14,10 +22,8 @@ describe("argon2d_hash generates and verifies the hash according to the correct 
     const verify_result = argon2.argon2d_verify(actual_hash, password);
     expect(verify_result).toBe(Argon2VerifyResult.OK);
   });
-});
 
-describe("argon2d_hash generates and verifies the hash according to the wrong password", () => {
-  it("correctly", async () => {
+  it("argon2d_hash generates and verifies the hash according to the wrong password correctly", () => {
     const password: string = "passwordpassword";
     const wrongpassword: string = "thisisthewrongpassword";
     const salt: string = "saltsaltsaltsalt"; // salt should be truely random - this here is just for testing purposes - never do this in a real application
@@ -27,10 +33,8 @@ describe("argon2d_hash generates and verifies the hash according to the wrong pa
     const verify_result = argon2.argon2d_verify(actual_hash, wrongpassword);
     expect(verify_result).toBe(Argon2VerifyResult.VERIFY_MISMATCH);
   });
-});
 
-describe("argon2i_hash generates and verifies the hash according to the correct password", () => {
-  it("correctly", async () => {
+  it("argon2i_hash generates and verifies the hash according to the correct password correctly", () => {
     const password: string = "passwordpassword";
     const salt: string = "saltsaltsaltsalt"; // salt should be truely random - this here is just for testing purposes - never do this in a real application
     const keysize: number = 32;
@@ -39,10 +43,8 @@ describe("argon2i_hash generates and verifies the hash according to the correct 
     const verify_result = argon2.argon2i_verify(actual_hash, password);
     expect(verify_result).toBe(Argon2VerifyResult.OK);
   });
-});
 
-describe("argon2i_hash generates and verifies the hash according to the wrong password", () => {
-  it("correctly", async () => {
+  it("argon2i_hash generates and verifies the hash according to the wrong password correctly", () => {
     const password: string = "passwordpassword";
     const wrongpassword: string = "thisisthewrongpassword";
     const salt: string = "saltsaltsaltsalt"; // salt should be truely random - this here is just for testing purposes - never do this in a real application
@@ -52,10 +54,8 @@ describe("argon2i_hash generates and verifies the hash according to the wrong pa
     const verify_result = argon2.argon2i_verify(actual_hash, wrongpassword);
     expect(verify_result).toBe(Argon2VerifyResult.VERIFY_MISMATCH);
   });
-});
 
-describe("argon2id_hash generates and verifies the hash according to the correct password", () => {
-  it("correctly", async () => {
+  it("argon2id_hash generates and verifies the hash according to the correct password correctly", () => {
     const password: string = "passwordpassword";
     const salt: string = "saltsaltsaltsalt"; // salt should be truely random - this here is just for testing purposes - never do this in a real application
     const keysize: number = 32;
@@ -64,10 +64,8 @@ describe("argon2id_hash generates and verifies the hash according to the correct
     const verify_result = argon2.argon2id_verify(actual_hash, password);
     expect(verify_result).toBe(Argon2VerifyResult.OK);
   });
-});
 
-describe("argon2id_hash generates and verifies the hash according to the wrong password", () => {
-  it("correctly", async () => {
+  it("argon2id_hash generates and verifies the hash according to the wrong password correctly", () => {
     const password: string = "passwordpassword";
     const wrongpassword: string = "thisisthewrongpassword";
     const salt: string = "saltsaltsaltsalt"; // salt should be truely random - this here is just for testing purposes - never do this in a real application
