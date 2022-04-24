@@ -9,7 +9,7 @@ jobs:
      - name: Checkout repository
        uses: actions/checkout@v2
        with:
-          submodules: recursive
+        submodules: recursive
      - name: Cache Emscripten-SDK
        id: cache-emsdk
        uses: actions/cache@v3
