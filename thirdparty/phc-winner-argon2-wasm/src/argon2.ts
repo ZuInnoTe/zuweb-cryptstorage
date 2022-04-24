@@ -116,9 +116,7 @@ export class Argon2 {
    * Release resources
    */
   public close() {
-    if (this.argon2Module !== undefined) {
-      this.argon2Module.destroy;
-    }
+     // tbd
   }
 
   /**
@@ -217,9 +215,9 @@ export class Argon2 {
     let t_cost = argon2_min_t_cost;
     let m_cost = argon2_min_m_cost;
     let parallelism = argon2_min_parallelism;
-    let validatedParameters: Argon2ParameterValidationResult[] =
+    const validatedParameters: Argon2ParameterValidationResult[] =
       this.validateParameters(parameters);
-    for (let validatedParameter of validatedParameters) {
+    for (const validatedParameter of validatedParameters) {
       if (
         validatedParameter.parameterResult !==
         Argon2ParameterValidationResultType.OK
@@ -342,20 +340,20 @@ export class Argon2 {
   private validateParameters(
     parameters?: Argon2Parameters
   ): Argon2ParameterValidationResult[] {
-    let result: Argon2ParameterValidationResult[] = [];
+    const result: Argon2ParameterValidationResult[] = [];
 
     if (parameters === undefined) {
-      let t_cost_result: Argon2ParameterValidationResult = {
+      const t_cost_result: Argon2ParameterValidationResult = {
         parameterName: "t_cost",
         parameterResult:
           Argon2ParameterValidationResultType.PARAMETER_INCOMPLETE,
       };
-      let m_cost_result: Argon2ParameterValidationResult = {
+      const m_cost_result: Argon2ParameterValidationResult = {
         parameterName: "m_cost",
         parameterResult:
           Argon2ParameterValidationResultType.PARAMETER_INCOMPLETE,
       };
-      let parallelism: Argon2ParameterValidationResult = {
+      const parallelism: Argon2ParameterValidationResult = {
         parameterName: "parallelism",
         parameterResult:
           Argon2ParameterValidationResultType.PARAMETER_INCOMPLETE,
@@ -375,7 +373,7 @@ export class Argon2 {
         t_cost_parameterResult =
           Argon2ParameterValidationResultType.PARAMETER_NOT_MINIMAL_SECURE;
       }
-      let t_cost_result: Argon2ParameterValidationResult = {
+      const t_cost_result: Argon2ParameterValidationResult = {
         parameterName: "t_cost",
         parameterResult: t_cost_parameterResult,
       };
@@ -390,7 +388,7 @@ export class Argon2 {
         m_cost_parameterResult =
           Argon2ParameterValidationResultType.PARAMETER_NOT_MINIMAL_SECURE;
       }
-      let m_cost_result: Argon2ParameterValidationResult = {
+      const m_cost_result: Argon2ParameterValidationResult = {
         parameterName: "m_cost",
         parameterResult: m_cost_parameterResult,
       };
@@ -405,7 +403,7 @@ export class Argon2 {
         parallelism_parameterResult =
           Argon2ParameterValidationResultType.PARAMETER_NOT_MINIMAL_SECURE;
       }
-      let parallelism_result: Argon2ParameterValidationResult = {
+      const parallelism_result: Argon2ParameterValidationResult = {
         parameterName: "parallelism",
         parameterResult: parallelism_parameterResult,
       };
