@@ -33,6 +33,7 @@ jobs:
            emcc --version
      - name: "Make third party - phc-winner-argon2-wasm"
        run: |
+           source ./emsdk/emsdk_env.sh
            cd thirdparty/phc-winner-argon2-wasm
            make clean
            make
