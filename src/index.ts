@@ -9,9 +9,13 @@
  */
 import { Buffer } from "buffer";
 
+import { CapabilitiesDetector } from "./detector";
+
 export class ZuCryptWebStorageService {
+  private capabilityDetector: CapabilitiesDetector;
+
   constructor() {
-    // nothing to do
+    this.capabilityDetector = new CapabilitiesDetector();
   }
 
   public checkPrerequisites() {
