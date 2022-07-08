@@ -1,7 +1,7 @@
 name: zucryptwebstorage-build
 on: [push]
 env:
-    EMSDK_VERSION: "3.1.8"
+    EMSDK_VERSION: "3.1.15"
 jobs:
   build-phc-winner-argon2-wasm-dev:
     runs-on: ubuntu-latest
