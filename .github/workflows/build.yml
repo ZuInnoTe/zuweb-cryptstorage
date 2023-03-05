@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: Checkout repository
-       uses: actions/checkout@v2
+       uses: actions/checkout@v3
        with:
         submodules: recursive
      - name: Cache Emscripten-SDK
@@ -18,7 +18,7 @@ jobs:
         key: ${{ runner.os }}-emcc-${{env.EMSDK_VERSION}}
      - name: Checkout emscripten
        if: steps.cache-emsdk.outputs.cache-hit != 'true'
-       uses: actions/checkout@v2
+       uses: actions/checkout@v3
        with:
         repository: emscripten-core/emsdk
         path: emsdk
