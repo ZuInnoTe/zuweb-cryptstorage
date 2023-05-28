@@ -8,6 +8,7 @@ ARGON2_EXPORTED_FUNCTIONS = '[ \
 	]'
 
 EXPORTED_RUNTIME_METHODS = '[ \
+	    "lengthBytesUTF8", \
 		"stringToUTF8", \
 		"UTF8ToString" \
 	]'
